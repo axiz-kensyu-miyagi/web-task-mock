@@ -8,10 +8,10 @@
 <body>
 
   <div class="header">
-    <h1 class="site_logo"><a href="menu.html">商品管理システム</a></h1>
+    <h1 class="site_logo"><a href="menu.php">商品管理システム</a></h1>
     <div class="user">
       <p class="user_name">佐藤さん、こんにちは</p>
-      <form class="logout_form" action="logout.html" method="get">
+      <form class="logout_form" action="logout.php" method="get">
         <button class="logout_btn" type="submit">
           <img src="images/ドアアイコン.png">ログアウト</button>
       </form>
@@ -30,7 +30,7 @@
     <div class="form_body">
       <p class="error">エラーメッセージ</p>
   
-      <form action="menu.html" method="get">
+      <form action="menu.php" method="get">
         <fieldset class="label-130">
           <div>
             <label class="required">商品ID</label>
@@ -69,7 +69,7 @@
         </fieldset>
         <div class="btns">
           <button type="button" onclick="openModal()" class="basic_btn">登録</button>
-          <input type="button" onclick="location.href='./menu.html'" value="戻る" class="cancel_btn">
+          <input type="button" onclick="location.href='./menu.php'" value="戻る" class="cancel_btn">
         </div>
         <div id="modal">
           <p class="modal_message">登録しますか？</p>

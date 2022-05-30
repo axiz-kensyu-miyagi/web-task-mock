@@ -10,10 +10,10 @@
   <div id="app">
 
     <div class="header">
-      <h1 class="site_logo"><a href="menu.html">商品管理システム</a></h1>
+      <h1 class="site_logo"><a href="menu.php">商品管理システム</a></h1>
       <div class="user">
         <p class="user_name">佐藤さん、こんにちは</p>
-        <form class="logout_form" action="logout.html" method="get">
+        <form class="logout_form" action="logout.php" method="get">
           <button class="logout_btn" type="submit">
             <img src="images/ドアアイコン.png">ログアウト</button>
         </form>
@@ -22,7 +22,7 @@
 
     <hr>
 
-    <div class="btn"><a class="basic_btn regist" href="insert.html">新規登録</a></div>
+    <div class="btn"><a class="basic_btn regist" href="insert.php">新規登録</a></div>
     <p>成功メッセージ</p>
     <form method="get" action="#" class="search_container">
       <input type="text" size="25" placeholder="キーワード検索">
@@ -58,7 +58,7 @@
             <td>{{ product.name }}</td>
             <td>{{ product.price }}</td>
             <td>{{ product.category }}</td>
-            <td><a class="detail_btn" href="./detail.html">詳細</a></td>
+            <td><a class="detail_btn" href="./detail.php">詳細</a></td>
           </tr>
         </template>
       </tbody>
