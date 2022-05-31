@@ -12,19 +12,22 @@
 
   <div class="login_form">
     <img src="./images/logo.png" class="login_logo">
-    <p class="error">エラーメッセージ</p>
+    <p class="error">
+       <?php $msg = ($errorMessage =="") ? " ":"$errorMessage";
+             echo $msg
+       ?>
+      </p>
 
-    <form action="menu.php" method="get">
+    <form action="login-controller.php" method="POST">
       <fieldset>
         <div class="cp_iptxt">
           <input class="base_input" type="text" name="loginId" placeholder="ID">
           <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
-          <div class="error">エラーメッセージ</div>
         </div>
 
         <div>
           <input class="base_input" type="password" name="pass" placeholder="PASS">
-          <div class="error">エラーメッセージ</div>
+          <div class="error"></div>
         </div>
       </fieldset>
       <button class="logout_btn" type="submit">ログイン</button>

@@ -1,4 +1,4 @@
-<!DOCTYPE html> //detail.php
+<!DOCTYPE html> 
 <html>
 <head>
 <meta charset="UTF-8">
@@ -10,7 +10,7 @@
   <div class="header">
     <h1 class="site_logo"><a href="menu.php">商品管理システム</a></h1>
     <div class="user">
-      <p class="user_name">佐藤さん、こんにちは</p>
+      <p class="user_name"><?php session_start(); echo $_SESSION['user_id']; ?>さん、こんにちは</p>
       <form class="logout_form" action="logout.php" method="get">
         <button class="logout_btn" type="submit">
           <img src="images/ドアアイコン.png">ログアウト</button>
