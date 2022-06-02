@@ -15,10 +15,10 @@ $loginService = new LoginService();
     }else{
         //idとpassは入力OK、データベースと照合する手続きへ
         if($loginService->loginCheck($_POST['loginId'], $_POST['pass'])){
-            session_start();
-            $_SESSION['user_id'] = $_POST['loginId'];
             header('Location: menu.php');
         } else {
-            header('Location:index.php');
+            $errorMessage = 'IDまたはパスワードが一致しません。';
+            include('index.php ');
+            return $errorMessage;
         }
     } 

@@ -13,16 +13,24 @@
   <div class="login_form">
     <img src="./images/logo.png" class="login_logo">
     <p class="error">
-       <?php $msg = ($errorMessage =="") ? " ":"$errorMessage";
-             echo $msg
+       <?php 
+       if(isset($errorMessage)){
+          $msg = ($errorMessage =="") ? " ":"$errorMessage";
+          echo $msg;
+        }else{
+          $msg = "";
+          echo $msg;
+        }
        ?>
       </p>
 
     <form action="login-controller.php" method="POST">
       <fieldset>
         <div class="cp_iptxt">
+          <p>
           <input class="base_input" type="text" name="loginId" placeholder="ID">
           <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
+          </p>
         </div>
 
         <div>

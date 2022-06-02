@@ -21,7 +21,17 @@ class LoginService
             $stmt->bindValue(':login_id', $loginId, PDO::PARAM_INT);
             $stmt->bindValue(':password', $pass, PDO::PARAM_STR);
             $stmt->execute();
-            $result = $stmt->fetch();
+            $result = $stmt->fetchAll();
+
+
+            session_start();
+            foreach($result as $key => $value){
+                foreach( $value as $val){
+                    $name[] = $val;
+                }             
+            }
+            $_SESSION['user_name'] = $name[3];
+            
 
             if($result){
                 return true;
