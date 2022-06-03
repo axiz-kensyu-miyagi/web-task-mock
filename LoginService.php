@@ -32,6 +32,7 @@ class LoginService
             }
             $_SESSION['user_name'] = $name[3];
             
+            $_SESSION['user_role'] = $name[4];
 
             if($result){
                 return true;

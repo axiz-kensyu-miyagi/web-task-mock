@@ -25,7 +25,7 @@
       <div class="img_block">
         <img src="images/マッキー.png" class="product_img"><br>
       </div>
-      <form action="menu.php" method="get">
+      <form action="success.php" method="get">
         <fieldset class="label-130 product_block">
           <p class="error">エラーメッセージ</p>
           <div>
@@ -54,13 +54,19 @@
         </fieldset>
         <div>
           <div class="btns">
-            <input type="button" onclick="openModal()" value="削除" class="basic_btn">
-            <input type="button" onclick="location.href='./updateInput.php'" value="編集" class="basic_btn">
+            
+            <?php if($_SESSION['user_role'] == 1){ ?>
+              <input type="button" onclick="openModal()" value="削除" class="basic_btn">
+              <input type="button" onclick="location.href='./updateInput.php'" value="編集" class="basic_btn">
+
+            <?php }else if($_SESSION['user_role'] == 2){?>
+            <?php } ?>
+
             <input type="button" onclick="location.href='./menu.php'" value="戻る" class="cancel_btn">
           </div>
           <div id="modal">
             <p class="modal_message">削除しますか？</p>
-            <div class="btns">
+            <div class="btns">            
               <button type="submit" class="basic_btn">削除</button>
               <button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
             </div>

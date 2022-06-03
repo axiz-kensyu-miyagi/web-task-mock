@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,7 @@
     <div class="header">
       <h1 class="site_logo"><a href="menu.php">商品管理システム</a></h1>
       <div class="user">
-        <p class="user_name"><?php session_start(); echo $_SESSION['user_name']; ?>さん、こんにちは</p>
+        <p class="user_name"><?php echo $_SESSION['user_name']; ?>さん、こんにちは</p>
         <form class="logout_form" action="logout.php" method="get">
           <button class="logout_btn" type="submit">
             <img src="images/ドアアイコン.png">ログアウト</button>
@@ -20,10 +22,15 @@
       </div>
     </div>
 
+    
     <hr>
 
-    <div class="btn"><a class="basic_btn regist" href="insert.php">新規登録</a></div>
-    <p><?php ?></p>
+    <?php if($_SESSION['user_role'] == 1){ ?>
+      <div class="btn"><a class="basic_btn regist" href="insert.php">新規登録</a></div>
+    <?php }else if($_SESSION['user_role'] == 2){?>
+    <?php } ?>
+
+    <p></p>
     <form method="get" action="serch-controller.php" class="search_container">
       <input type="text" size="25" placeholder="キーワード検索" neme="keyword">
       <input type="submit" value="&#xf002">

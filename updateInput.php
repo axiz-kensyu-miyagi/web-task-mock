@@ -23,7 +23,7 @@
     <div class="form_body">
       <p class="error">エラーメッセージ</p>
 
-      <form action="menu.php" method="get">
+      <form action="success.php" method="get">
         <fieldset class="label-130">
           <div>
             <label>商品ID</label>
@@ -62,12 +62,18 @@
           </div>
         </fieldset>
           <div class="btns">
+
+          <?php if($_SESSION['user_role'] == 1){ ?>
             <button type="button" onclick="openModal()" class="basic_btn">更新</button>
+          <?php }else if($_SESSION['user_role'] == 2){?>
+          <?php } ?>
+
             <input type="button" onclick="location.href='./menu.php'" value="メニューに戻る" class="cancel_btn">
           </div>
           <div id="modal">
             <p class="modal_message">更新しますか？</p>
             <div class="btns">
+
               <button type="submit" class="basic_btn">更新</button>
               <button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
             </div>

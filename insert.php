@@ -30,7 +30,7 @@
     <div class="form_body">
       <p class="error">エラーメッセージ</p>
   
-      <form action="menu.php" method="get">
+      <form action="success.php" method="get">
         <fieldset class="label-130">
           <div>
             <label class="required">商品ID</label>
