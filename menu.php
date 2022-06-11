@@ -1,5 +1,3 @@
-<?php session_start();?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +12,15 @@
     <div class="header">
       <h1 class="site_logo"><a href="menu.php">商品管理システム</a></h1>
       <div class="user">
-        <p class="user_name"><?php echo $_SESSION['user_name']; ?>さん、こんにちは</p>
+        <p class="user_name">
+          <?php
+          if(!isset($_SESSION)){
+             session_start();
+             echo $_SESSION['user_name'];
+          }else{
+            echo $_SESSION['user_name'];
+          } ?>
+          さん、こんにちは</p>
         <form class="logout_form" action="logout.php" method="get">
           <button class="logout_btn" type="submit">
             <img src="images/ドアアイコン.png">ログアウト</button>
@@ -31,24 +37,45 @@
     <?php } ?>
 
     <p></p>
-    <form method="get" action="serch-controller.php" class="search_container">
-      <input type="text" size="25" placeholder="キーワード検索" neme="keyword">
-      <input type="submit" value="&#xf002">
+
+<!--    <form action='serch-controller.php' method='post' class="search_container">
+-->
+    <form action='serch-controller.php' method='post' class="">
+      <input name='keyWord' type="text" size="25" placeholder="キーワード検索">
+      <input type='submit' value="&#xf002">
+
+      <select name="sort">\
+            <option value="sort"></option>
+            <option value="productid">商品ID</option>
+            <option value="category">カテゴリ</option>
+            <option value="lowpraice">単価：安い順</option>
+            <option value="highprice">単価：高い順</option>
+            <option value="oldday">登録日：古い順</option>
+            <option value="newday">登録日：新しい順</option>
+      </select>
+
+
+
     </form>
 
+    <form action='serch-controller.php' method='post' class="">
+<!--
+          <input type='submit'>
+-->
+        </form>
+
+<!--
+    <form method="POST" action="serch-controller.php" class="search_container">
+      <input type="text" size="25" placeholder="キーワード検索" neme="keyword">
+      <input type="submit" name='IdNmake2' value="&#xf002">
+    </form>
+-->
+
     <table>
-        <div class="caption"><p>検索結果：10件</p></div>
+        <div class="caption"><p>検索結果：<?php //echo $count; ?>件</p></div>
         <div class="order">
-          <select class="base-text">
-            <option>並び替え</option>
-            <option>商品ID</option>
-            <option>カテゴリ</option>
-            <option>単価：安い順</option>
-            <option>単価：高い順</option>
-            <option>登録日：古い順</option>
-            <option>登録日：新しい順</option>
-          </select>
-        </div>
+
+       </div>
       <thead>
         <tr>
           <th>商品ID</th>
@@ -60,6 +87,107 @@
       </thead>
       <tbody>
         <template v-for="product in products">
+        <?php
+
+      if(!empty($_SESSION['result'])){
+          $count = 0;
+          foreach($_SESSION['result'] as $key => $value){
+              $count += 1; 
+            echo '<tr>';
+            
+            print '<td>'.htmlspecialchars( $value['product_id']) .'</td>';
+            print '<td>'.htmlspecialchars( $value['name']) .'</td>';
+            print '<td>'.htmlspecialchars( $value['price']) .'</td>';
+            print '<td>'.htmlspecialchars( $value['category_id']).'</td>';
+            ?>
+            <td><a class="detail_btn" href="./detail.php">詳細</a></td>
+            <?php
+              echo '</tr>';
+          }
+          unset($_SESSION['result']);?>
+
+          </template>
+          </tbody>
+        </table>
+      </div>
+      <footer></footer>
+    
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+      <script>
+        const vie = new Vue({
+          el: "#app",
+          data: {
+            products: [
+              {
+                // ID: "10001",
+                // name: "マッキー(黒)",
+                // price: 160,
+                // category: "筆記具",
+              },
+              // {
+              //   ID: "10002",
+              //   name: "電卓",
+              //   price: 935,
+              //   category: "オフィス機器",
+              // },
+              // {
+              //   ID: "10003",
+              //   name: "ホッチキス芯",
+              //   price: 220,
+              //   category: "事務消耗品",
+              // },
+              // {
+              //   ID: "10004",
+              //   name: "Campus(5冊組)",
+              //   price: 220,
+              //   category: "紙製品",
+              // },
+              // {
+              //   ID: "10005",
+              //   name: "地球儀",
+              //   price: 160,
+              //   category: "雑貨",
+              // },
+              // {
+              //   ID: "10006",
+              //   name: "ロジカルノート(5冊組)",
+              //   price: 386,
+              //   category: "紙製品",
+              // },
+              // {
+              //   ID: "10007",
+              //   name: "レジスター",
+              //   price: 130,
+              //   category: "オフィス用品",
+              // },
+              // {
+              //   ID: "10008",
+              //   name: "カドケシ",
+              //   price: 150,
+              //   category: "筆記具",
+              // },
+              // {
+              //   ID: "10009",
+              //   name: "アラビックヤマト",
+              //   price: 200,
+              //   category: "事務用品",
+              // },
+              // {
+              //   ID: "10010",
+              //   name: "粘土",
+              //   price: 160,
+              //   category: "雑貨",
+              // },
+            ]
+          }
+        })
+    
+      </script>
+    </body>
+    </html>
+    
+<?php   }else{?>
+
           <tr>
             <td>{{ product.ID }}</td>
             <td>{{ product.name }}</td>
@@ -146,3 +274,5 @@
   </script>
 </body>
 </html>
+
+<?php   }?>
